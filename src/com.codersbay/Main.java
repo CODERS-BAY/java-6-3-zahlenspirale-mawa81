@@ -3,19 +3,69 @@ package com.codersbay;
 public class Main {
 
     public static void main(String[] args) {
-        int n = 4; // max N
-        //int x = 1;
-       // int y= 1;
-        int[][] field = new int[n*n][2];
-        int[][] field_new = new int[n*n][2];
-        int index = 0;
-        //this_xy = field[index][x][y];
+        int n = 3; // max N
+        int xs_start = 1;
+        int ys_start = 1;
+        int xs_end = n;
+        int ys_end = n;
 
-        for(int y = 1; y <= n; y++){
-            for(int x = 1; x <= n; x++){
-                System.out.print(x+""+y+" ");
-                field[index][1] = x;
+        int[][] field = new int[n * n][2];
+        int[][] field_new = new int[n * n][2];
+        int index = 0;
+
+        while (index < n * n) {
+            for (int xs = xs_start; xs <= xs_end; xs++) {
+                field_new[index][0] = xs;
+                field_new[index][1] = xs_start;
+
+                System.out.println("i+: " + index);
+                System.out.println(field_new[index][0]);
+                System.out.println(field_new[index][1]);
                 index++;
+            }
+            ys_start++;
+            for (int ys = ys_start; ys <= ys_end; ys++) {
+                field_new[index][0] = xs_end;
+                field_new[index][1] = ys;
+                System.out.println("i++: " + index);
+                System.out.println(field_new[index][0]);
+                System.out.println(field_new[index][1]);
+                index++;
+            }
+            xs_end--;
+            for (int xs = xs_end; xs >= xs_start; xs--) {
+                field_new[index][0] = xs;
+                field_new[index][1] = ys_end;
+                System.out.println("i-: " + index);
+                System.out.println(field_new[index][0]);
+                System.out.println(field_new[index][1]);
+                index++;
+                // System.out.print(xs+" x "+xs_start);
+            }
+            ys_end--;
+            for (int ys = ys_end; ys >= ys_start; ys--) {
+                field_new[index][0] = xs_start;
+                field_new[index][1] = ys;
+                System.out.println("i--: " + index);
+                System.out.println(field_new[index][0]);
+                System.out.println(field_new[index][1]);
+                //  System.out.print(ys_start+" y "+ys);
+                index++;
+            }
+            xs_start++;
+        }
+        for (int e = 0; e < field_new.length; e++) {
+            System.out.println("i " + (e + 1));
+            System.out.println(field_new[e][0]);
+            System.out.println(field_new[e][1]);
+        }
+        index = 0;
+        for (int y = 1; y <= n; y++) {
+            for (int x = 1; x <= n; x++) {
+                System.out.print(x + "" + y + " ");
+                field_new[index][1] = x;
+                index++;
+                System.out.print("index " + index + " ");
             }
             System.out.println();
         }
