@@ -1,9 +1,27 @@
 package com.codersbay;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        int n = 5; // max N
+        Scanner scan = new Scanner(System.in);
+        boolean scannerGotInt = false;
+        int n = 0; // max N
+        do {
+            System.out.println("Gib bitte eine positive Ganzzahl (größer als 1) ein:");
+            if (scan.hasNextInt()) {
+                n = scan.nextInt();
+                if (n > 1) {
+                    scannerGotInt = true;
+                }
+            } else {
+                System.out.println("Falsche Eingabe!");
+                scan.next();
+            }
+        }
+        while (!scannerGotInt);
+
         int xs_start = 1;
         int ys_start = 1;
         int xs_end = n;
@@ -58,6 +76,8 @@ public class Main {
             System.out.println(field_new[e][0]);
             System.out.println(field_new[e][1]);
         } */
+        System.out.println("Zahlenspirale mit N = " + n);
+        System.out.println();
         // goes through the x and y coordinates, loop through the field array if field x y similar to the loop x y
         for (int y = 1; y <= n; y++) {
             for (int x = 1; x <= n; x++) {
